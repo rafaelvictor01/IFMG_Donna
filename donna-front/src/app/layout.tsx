@@ -1,12 +1,11 @@
+'use client';
+
 import './globals.css';
 import { Poppins } from 'next/font/google';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { DefaultTheme } from '../themes/default_theme';
 
 const poppins = Poppins({ weight: ['400', '600'], subsets: ['latin'] });
-
-export const metadata = {
-  title: 'Donna',
-  description: 'Plataforma web guarda Sabará'
-};
 
 interface IRootLayout {
   children: React.ReactNode;
@@ -15,9 +14,16 @@ interface IRootLayout {
 export default function RootLayout(props: IRootLayout) {
   return (
     <html lang="pt-br">
-      <body className={poppins.className}>
-        <main>{props.children}</main>
-      </body>
+      <head>
+        <title>Donna</title>
+        <meta name={'description'} content={'Plataforma web guarda Sabará'} />
+      </head>
+      <ThemeProvider theme={DefaultTheme}>
+        <CssBaseline />
+        <body className={poppins.className}>
+          <main>{props.children}</main>
+        </body>
+      </ThemeProvider>
     </html>
   );
 }
